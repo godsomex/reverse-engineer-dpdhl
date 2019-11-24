@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Tech 11</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <form name="my-form" action="#" method="get">
+      <div class="form-group">
+        <div class="plz-group">
+          <label for="plz">Plz</label>
+          <input
+            type="text"
+            id="plz"
+            name="plz"
+            placeholder="plz"
+            required
+            onblur="myFunction()"
+          />
+        </div>
+        <div class="stadt-group">
+          <label for="stadt">Stadt</label>
+          <input type="stadt" id="stadt" name="stadt" placeholder="stadt" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="str-group">
+          <label for="str">Strasse</label>
+          <input type="str" id="str" name="str" placeholder="str" />
+        </div>
+        <div class="haus-group">
+          <label for="no">Hausnummer</label>
+          <input
+            type="number"
+            id="no"
+            name="no"
+            placeholder="Enter House Number"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="land">Land</label>
+        <input type="text" id="land" disabled placeholder="Deutschland" />
+      </div>
+      <div class="form-group">
+        <button id="btnSend">info</button>
+      </div>
+    </form>
+
+    <section></section>
+
+    <div class="form-group">
+      <select id="locality-dropdown" name="locality">
+        <option value="bonus">bonus mark</option>
+      </select>
+    </div>
+
+    <!-- <script src="index.js"></script> -->
+    <script>
+      function myFunction() {
+        let dropdown = document.getElementById("locality-dropdown");
+        dropdown.length = 0;
+
+        let postcode = document.getElementById("plz").value;
+
+        let stadt = document.getElementById("stadt");
+
+        let defaultOption = document.createElement("option");
+        defaultOption.text = "Choose State/Province";
+
+        dropdown.add(defaultOption);
+        dropdown.selectedIndex = 0;
+
+        let url =
+          "https://cors-anywhere.herokuapp.com/https://www.postdirekt.de/plzserver/PlzAjaxServlet";
+        let params = "finda=city&city=" + postcode + "&lang=de_DE";
+
+        function getCity(url, params) {
+          return fetch(`${url}?${params}`);
+        }
+
+        if (postcode.length == 5) {
+          getCity(`${url}?${params}`)
+            .then(res => res.json())
+            .then(result => {
+              let option;
+              option = document.createElement("option");
+              option.text = result.rows[0].city;
+              option.value = result.rows[0].city;
+              dropdown.add(option);
+              stadt.value = result.rows[0].city;
+            });
+        } else {
+          stadt.value = "please enter 5 digits";
+        }
+        try {
+        } catch (error) {
+          console(error);
+        }
+
+        const formToJSON = elements =>
+          [].reduce.call(
+            elements,
+            (data, element) => {
+              data[element.name] = element.value;
+              return data;
+            },
+            {}
+          );
+
+        const handleFormSubmit = event => {
+          event.preventDefault();
+          const data = formToJSON(form.elements);
+          const dataContainer = document.getElementsByTagName("section")[0];
+          dataContainer.textContent = JSON.stringify(data, null, "  ");
+        };
+
+        const form = document.getElementsByTagName("form");
+        form.addEventListener("submit", handleFormSubmit);
+      }
+    </script>
+  </body>
+</html>
