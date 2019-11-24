@@ -16,6 +16,103 @@ button {
 input {
   border: 1px solid green;
   border-radius: 4px;
+  margin-left: 1em;
+  margin-bottom: 0.8em;
+}
+
+button {
+  border: 1px solid green;
+  border-radius: 4px;
+}
+
+input:focus {
+  border: 2px solid red;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.plz-group {
+  display: inline-flex;
+  margin-left: 2em;
+}
+
+.stadt-group {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.stadt-group input {
+  width: 90%;
+}
+
+.str-group {
+  width: 70%;
+}
+
+.str-group input {
+  width: 85%;
+}
+
+.haus-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 25%;
+}
+
+.haus-group input {
+  width: 40%;
+}
+
+.land-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.land-group input {
+  width: 90%;
+}
+
+.land-group label {
+  margin-left: 0.8em;
+}
+
+@media (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+  .form-group {
+    display: block;
+  }
+}
+
+/*
+form {
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 1000px;
+}
+select,
+option,
+input,
+label,
+button {
+  padding: 0.2rem 0.3rem;
+  font-size: 1.2rem;
+  border-radius: 3px;
+}
+
+input {
+  border: 1px solid green;
+  border-radius: 4px;
   width: 100%;
 }
 button {
@@ -67,3 +164,4 @@ input:focus {
     display: block;
   }
 }
+*/
