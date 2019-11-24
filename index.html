@@ -84,22 +84,22 @@
         }
 
         if (postcode.length == 5) {
-          getCity(`${url}?${params}`)
-            .then(res => res.json())
-            .then(result => {
-              let option;
-              option = document.createElement("option");
-              option.text = result.rows[0].city;
-              option.value = result.rows[0].city;
-              dropdown.add(option);
-              stadt.value = result.rows[0].city;
-            });
+          try {
+            getCity(`${url}?${params}`)
+              .then(res => res.json())
+              .then(result => {
+                let option;
+                option = document.createElement("option");
+                option.text = result.rows[0].city;
+                option.value = result.rows[0].city;
+                dropdown.add(option);
+                stadt.value = result.rows[0].city;
+              });
+          } catch (error) {
+            console.log(error);
+          }
         } else {
           stadt.value = "please enter 5 digits";
-        }
-        try {
-        } catch (error) {
-          console(error);
         }
 
         const formToJSON = elements =>
@@ -119,7 +119,8 @@
           dataContainer.textContent = JSON.stringify(data, null, "  ");
         };
 
-        const form = document.getElementsByTagName("form");
+        const form = document.getElementsByTagName("form")[0];
+
         form.addEventListener("submit", handleFormSubmit);
       }
     </script>
