@@ -1,0 +1,69 @@
+form {
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 1000px;
+}
+select,
+option,
+input,
+label,
+button {
+  padding: 0.2rem 0.3rem;
+  font-size: 1.2rem;
+  border-radius: 3px;
+}
+
+input {
+  border: 1px solid green;
+  border-radius: 4px;
+  width: 100%;
+}
+button {
+  border: 1px solid green;
+  border-radius: 4px;
+}
+
+input:focus {
+  border: 2px solid red;
+}
+
+.form-group {
+  display: flex;
+  margin: 10px 10px;
+}
+
+.plz-group {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.stadt-group {
+  display: flex;
+  flex-basis: 90%;
+}
+.stadt-group input {
+  width: 100%;
+}
+
+.str-group {
+  display: flex;
+  flex-basis: 90%;
+}
+
+.haus-group {
+  display: flex;
+}
+
+.form-group label {
+  align-items: right;
+}
+
+@media (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+  .form-group {
+    display: block;
+  }
+}
